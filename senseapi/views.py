@@ -1,7 +1,7 @@
 from flask import Flask, jsonify, request
 from flask.views import MethodView
 from flask_api import status
-from senseapi import app, db
+from senseapi import db
 from senseapi.models import Accelerometer
 from senseapi.schemas import AccelerometerSchema
 
@@ -19,22 +19,16 @@ class AccelerometerListView(MethodView):
 
     def post(self):
 
-        # Deserialize the data and queue to be commited
-        for d in request.json:
-            instance, errors = self.schema.load(d)
+        # Deserialize and validtate the data
+        instances, errors = self.schema.load(request.json, many=True)
 
-            if errors:
-                return jsonify({'errors': errors}), 422
+        if errors:
+            return jsonify({'errors': errors}), status.HTTP_400_BAD_REQUEST
 
-            import ipdb; ipdb.set_trace()
-            instance.save()
-        #     db.session.add(instance)
-        #
-        # db.session.commit()
+        # Save to the database
+        db.session.add_all(instances)
+        db.session.commit()
 
-        # response = []
-        #
-        # for data in request.json:
-        #     response.append(self.schema.load(data).data)
-
-        return jsonify(instance)
+        # Don't deserialize objects. Only the microprocessor should
+        # be posting data and it does not need the new objects.
+        return jsonify({"message": "objects created"}), status.HTTP_201_CREATED
