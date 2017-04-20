@@ -1,4 +1,4 @@
-from senseapi import db
+from sensor_api import db
 
 # Drop the databse and all tables
 db.reflect()

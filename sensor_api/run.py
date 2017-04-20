@@ -1,4 +1,4 @@
-from senseapi import app
+from sensor_api import app
 
 # start the server
 if __name__ == '__main__':

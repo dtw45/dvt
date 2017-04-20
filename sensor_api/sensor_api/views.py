@@ -1,9 +1,9 @@
 from flask import Flask, jsonify, request
 from flask.views import MethodView
 from flask_api import status
-from senseapi import db
-from senseapi.models import Accelerometer
-from senseapi.schemas import AccelerometerSchema
+from sensor_api import db
+from sensor_api.models import Accelerometer
+from sensor_api.schemas import AccelerometerSchema
 
 class AccelerometerListView(MethodView):
 

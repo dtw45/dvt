@@ -1,4 +1,4 @@
-from senseapi import db
+from sensor_api import db
 
 # Empty each table in the database
 for table in reversed(db.metadata.sorted_tables):

@@ -6,7 +6,7 @@ from flask_marshmallow import Marshmallow
 app = Flask(__name__)
 
 # load configuration settings
-app.config.from_object('senseapi.config.BaseConfig')
+app.config.from_object('config.BaseConfig')
 
 # create the sqlalchemy object
 db = SQLAlchemy(app)
