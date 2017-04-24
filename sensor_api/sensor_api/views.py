@@ -7,10 +7,12 @@ from sensor_api import db
 from sensor_api.models import Accelerometer
 from sensor_api.models import Gyroscope
 from sensor_api.models import Magnetometer
+from sensor_api.models import Emg
 
 from sensor_api.schemas import AccelerometerSchema
 from sensor_api.schemas import GyroscopeSchema
 from sensor_api.schemas import MagnetometerSchema
+from sensor_api.schemas import EmgSchema
 
 
 class BaseListView(MethodView):
@@ -59,3 +61,9 @@ class MagnetometerListView(BaseListView):
 
     model = Magnetometer
     schema = MagnetometerSchema()
+
+
+class EmgListView(BaseListView):
+
+    model = Emg
+    schema = EmgSchema()

@@ -28,3 +28,8 @@ class Gyroscope(TriaxialModel):
 
 class Magnetometer(TriaxialModel):
     pass
+
+
+class Emg(BaseModel):
+
+    magnitude = Column(Float, nullable=False)
