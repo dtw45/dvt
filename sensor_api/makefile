@@ -35,10 +35,10 @@ drop-tables: $(DROP_TABLE_SCRIPT)
 ###########################################
 
 # Create migration files based on models
-migrate:
+migrate: $(MANAGER)
 	python $(MANAGER) db migrate
 
 # Apply unapplied migrations
-upgrade:
+upgrade: $(MANAGER)
 	python $(MANAGER) db upgrade
 
